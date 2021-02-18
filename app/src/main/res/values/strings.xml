@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">FB2K beefweb controller</string>
+    <string name="menu_server">Server Config</string>
+    <string name="menu_about">About</string>
+    <string name="Activity_server_config_title">Server Config</string>
+    <string name="Activity_about_title">Aboout</string>
+    <string name="textview_current_server">Current server: %1$s</string>
+    <string name="input_search_hint">Search..</string>
+    <string name="button_search">Search</string>
+    <string name="button_play" translatable="false">▶</string>
+    <string name="button_next" translatable="false">▶▶</string>
+    <string name="button_previous" translatable="false">◀◀</string>
+    <string name="button_stop" translatable="false">■</string>
+    <string name="input_server_address">Server address</string>
+    <string name="input_server_user">Username</string>
+    <string name="input_server_pass">Password</string>
+    <string name="button_server_add">Add</string>
+    <string name="button_server_del">Delete</string>
+    <string name="button_server_save">Save</string>
+    <string name="button_server_confirm">Use</string>
+    <string name="button_update_playlist">Update playlist</string>
+    <string name="playing_title">Title</string>
+    <string name="playing_artist">Artist</string>
+    <string name="playing_album">Album</string>
+    <string name="playing_album_art">Album Art</string>
+    <string name="textview_playlist_order">Playlist order: %1$s</string>
+    <string name="button_order_default">Default</string>
+    <string name="button_order_title_asc">Title (A-Z)</string>
+    <string name="button_order_title_desc">Title (Z-A)</string>
+    <string name="button_order_artist_asc">Artist (A-Z)</string>
+    <string name="button_order_artist_desc">Artist (Z-A)</string>
+    <string name="button_order_album_asc">Album (A-Z)</string>
+    <string name="button_order_album_desc">Album (Z-A)</string>
+    <string name="button_order_random">Random</string>
+    <string name="textview_track_id">Track id</string>
+    <string name="textview_track_length">Track length</string>
+    <string name="playlist_updated">Playlist updated</string>
+    <string name="tv_track_limit">Tracks display limit:</string>
+    <string name="playlist_updating">Updating playlist..</string>
+    <string name="snackbar_server_saved">Server saved</string>
+    <string name="snackbar_server_used">Server used</string>
+    <string name="snackbar_playlist_order">Playlist order is set to: %1$s</string>
+    <string name="snackbar_track_limit_saved">Track limit saved</string>
+    <string name="snackbar_play">Playing %1$s - %2$s</string>
+    <string name="snackbar_got_it">GOT IT!</string>
+    <string name="snackbar_invalid_connection">Cannot connect to server</string>
+    <string name="snackbar_unknown_error">Unknown error occurred</string>
+    <string name="menu_night">Night mode</string>
+    <string name="menu_light">Light mode</string>
+    <string name="tv_copyright">Copyright © 2017-%1$d. 王悄悄悄 All rights reserved.</string>
+    <string name="tv_based">API provided by Beefweb Remote Panel (foo_beefweb)</string>
+    <string name="tv_test_edition">Insider edition for friends in the group</string>
+    <string name="server_del_confirm">Confirm delete?</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_cancel">Cancel</string>
+</resources>
