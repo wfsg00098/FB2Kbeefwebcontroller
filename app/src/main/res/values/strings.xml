@@ -7,10 +7,10 @@
     <string name="textview_current_server">Current server: %1$s</string>
     <string name="input_search_hint">Search..</string>
     <string name="button_search">Search</string>
-    <string name="button_play" translatable="false">▶</string>
-    <string name="button_next" translatable="false">▶▶</string>
-    <string name="button_previous" translatable="false">◀◀</string>
-    <string name="button_stop" translatable="false">■</string>
+    <string name="button_pause" translatable="false">⏸️</string>
+    <string name="button_next" translatable="false">⏭️</string>
+    <string name="button_previous" translatable="false">⏮️</string>
+    <string name="button_stop" translatable="false">⏹️</string>
     <string name="input_server_address">Server address</string>
     <string name="input_server_user">Username</string>
     <string name="input_server_pass">Password</string>
@@ -53,4 +53,6 @@
     <string name="server_del_confirm">Confirm delete?</string>
     <string name="btn_confirm">Confirm</string>
     <string name="btn_cancel">Cancel</string>
+    <string name="button_play" translatable="false">▶️</string>
+    <string name="button_replay" translatable="false">↪️</string>
 </resources>

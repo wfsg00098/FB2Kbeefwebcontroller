@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            style="?android:attr/buttonStyle"
+            android:id="@+id/button_stop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/button_stop"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_gravity="fill" />
+
+        <Button
+            style="?android:attr/buttonStyle"
+            android:id="@+id/button_play"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/button_play"
+            android:textSize="30sp"
+            app:layout_gravity="fill" />
+
+        <Button
+            style="?android:attr/buttonStyle"
+            android:id="@+id/button_pause"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/button_pause"
+            android:textSize="30sp"
+            app:layout_gravity="fill" />
+
+        <Button
+            style="?android:attr/buttonStyle"
+            android:id="@+id/button_previous"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/button_previous"
+            android:textSize="30sp"
+            app:layout_gravity="fill" />
+
+        <Button
+            style="?android:attr/buttonStyle"
+            android:id="@+id/button_next"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/button_next"
+            android:textSize="30sp"
+            app:layout_gravity="fill" />
+
+        <Button
+            style="?android:attr/buttonStyle"
+            android:id="@+id/button_replay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/button_replay"
+            android:textSize="30sp"
+            app:layout_gravity="fill"  />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

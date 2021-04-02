@@ -8,12 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -240,9 +242,7 @@ public class MainActivity extends AppCompatActivity {
                             thread1.start();
                         return false;
                     });
-                    runOnUiThread(() -> {
-                        ll.addView(item);
-                    });
+                    runOnUiThread(() -> ll.addView(item));
                 } catch (Exception e) {
                     runOnUiThread(() -> {
                         Snackbar sb = Snackbar.make(findViewById(R.id.main_layout), getString(R.string.snackbar_unknown_error), Snackbar.LENGTH_SHORT);
@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
                     RequestBody stringBody = RequestBody.create("{\"test\":123}", JSON);
                     Request request = new Request.Builder()
                             .addHeader("Authorization", "Basic " + G.get_auth_phrase())
-                            .url(G.Server_addr + "/api/player/pause/toggle")
+                            .url(G.Server_addr + "/api/player/play")
                             .post(stringBody)
                             .build();
                     okHttpClient.newCall(request).execute();
@@ -382,6 +382,62 @@ public class MainActivity extends AppCompatActivity {
             refresh_playing();
         });
 
+        findViewById(R.id.button_pause).setOnClickListener(v -> {
+            Thread thread = new Thread(() -> {
+                try {
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                    RequestBody stringBody = RequestBody.create("{\"test\":123}", JSON);
+                    Request request = new Request.Builder()
+                            .addHeader("Authorization", "Basic " + G.get_auth_phrase())
+                            .url(G.Server_addr + "/api/player/pause/toggle")
+                            .post(stringBody)
+                            .build();
+                    okHttpClient.newCall(request).execute();
+                } catch (Exception e) {
+                    runOnUiThread(() -> {
+                        Snackbar sb = Snackbar.make(findViewById(R.id.main_layout), getString(R.string.snackbar_invalid_connection), Snackbar.LENGTH_SHORT);
+                        sb.setAction(R.string.snackbar_got_it, v1 -> sb.dismiss());
+                        sb.show();
+                    });
+                    e.printStackTrace();
+                }
+            });
+            thread.start();
+            refresh_playing();
+        });
+
+        findViewById(R.id.button_replay).setOnClickListener(v -> {
+            Thread thread = new Thread(() -> {
+                try {
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                    RequestBody stringBody = RequestBody.create("{\"test\":123}", JSON);
+                    Request request = new Request.Builder()
+                            .addHeader("Authorization", "Basic " + G.get_auth_phrase())
+                            .url(G.Server_addr + "/api/player/stop")
+                            .post(stringBody)
+                            .build();
+                    okHttpClient.newCall(request).execute();
+                    request = new Request.Builder()
+                            .addHeader("Authorization", "Basic " + G.get_auth_phrase())
+                            .url(G.Server_addr + "/api/player/play")
+                            .post(stringBody)
+                            .build();
+                    okHttpClient.newCall(request).execute();
+                } catch (Exception e) {
+                    runOnUiThread(() -> {
+                        Snackbar sb = Snackbar.make(findViewById(R.id.main_layout), getString(R.string.snackbar_invalid_connection), Snackbar.LENGTH_SHORT);
+                        sb.setAction(R.string.snackbar_got_it, v1 -> sb.dismiss());
+                        sb.show();
+                    });
+                    e.printStackTrace();
+                }
+            });
+            thread.start();
+            refresh_playing();
+        });
+
         findViewById(R.id.button_search).setOnClickListener(v -> {
             EditText et = findViewById(R.id.input_search);
             String search = et.getText().toString();
@@ -395,6 +451,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+
     }
 
     @Override
