@@ -445,6 +445,12 @@ public class MainActivity extends AppCompatActivity {
             refresh_tracks();
         });
 
+        findViewById(R.id.button_search).setOnLongClickListener(v-> {
+            G.accurate_search = true;
+            findViewById(R.id.button_search).performClick();
+            return true;
+        });
+
         findViewById(R.id.input_search).setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
                 return findViewById(R.id.button_search).performClick();

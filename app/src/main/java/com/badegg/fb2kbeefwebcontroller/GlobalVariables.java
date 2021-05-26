@@ -52,6 +52,9 @@ public class GlobalVariables extends Application {
     //Tracks limit
     public int tracks_limit;
 
+    //One time accurate search
+    public boolean accurate_search = false;
+
     public String sqliteEscape(String keyWord) {
         keyWord = keyWord.replace("\\", "\\\\");
         keyWord = keyWord.replace("%", "\\%");
@@ -287,7 +290,7 @@ public class GlobalVariables extends Application {
         String[] args = new String[1];
         args[0] = list;
         JSONArray array = new JSONArray();
-        String order_sql = "";
+        String order_sql;
         switch (order) {
             case ORDER_DEFAULT:
                 order_sql = "";
@@ -365,10 +368,20 @@ public class GlobalVariables extends Application {
                     }
                     cursor.close();
                 }
-                args1[1] = "%" + sqliteEscape(sea) + "%";
-                args1[2] = "%" + sqliteEscape(sea) + "%";
-                args1[3] = "%" + sqliteEscape(sea) + "%";
-                cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title like ? escape '\\' or artist like ? escape '\\' or album like ? escape '\\')", args1);
+
+                if (!accurate_search){
+                    args1[1] = "%" + sqliteEscape(sea) + "%";
+                    args1[2] = "%" + sqliteEscape(sea) + "%";
+                    args1[3] = "%" + sqliteEscape(sea) + "%";
+                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title like ? escape '\\' or artist like ? escape '\\' or album like ? escape '\\')", args1);
+                } else {
+                    args1[1] = sqliteEscape(sea);
+                    args1[2] = sqliteEscape(sea);
+                    args1[3] = sqliteEscape(sea);
+                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title=? or artist=? or album=?)",args1);
+                    accurate_search = false;
+                }
+
                 if (cursor.moveToFirst()) {
                     set1.add(cursor.getInt(0));
                     while (cursor.moveToNext()) {
