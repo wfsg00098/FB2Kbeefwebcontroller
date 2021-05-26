@@ -361,25 +361,24 @@ public class GlobalVariables extends Application {
                 TreeSet<Integer> set1 = new TreeSet<>();
                 set1.clear();
 
-                if (sea.matches("[0-9]+")) {
-                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and id=" + Integer.parseInt(sea), args);
+                if (accurate_search ? search.matches("[0-9]+") : sea.matches("[0-9]+")) {
+                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and id=" + Integer.parseInt(accurate_search ? search : sea), args);
                     if (cursor.moveToFirst()) {
                         set1.add(cursor.getInt(0));
                     }
                     cursor.close();
                 }
 
-                if (!accurate_search){
+                if (!accurate_search) {
                     args1[1] = "%" + sqliteEscape(sea) + "%";
                     args1[2] = "%" + sqliteEscape(sea) + "%";
                     args1[3] = "%" + sqliteEscape(sea) + "%";
                     cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title like ? escape '\\' or artist like ? escape '\\' or album like ? escape '\\')", args1);
                 } else {
-                    args1[1] = sqliteEscape(sea);
-                    args1[2] = sqliteEscape(sea);
-                    args1[3] = sqliteEscape(sea);
-                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title=? or artist=? or album=?)",args1);
-                    accurate_search = false;
+                    args1[1] = sqliteEscape(search);
+                    args1[2] = sqliteEscape(search);
+                    args1[3] = sqliteEscape(search);
+                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title=? or artist=? or album=?)", args1);
                 }
 
                 if (cursor.moveToFirst()) {
@@ -390,6 +389,10 @@ public class GlobalVariables extends Application {
                 }
                 cursor.close();
                 set.retainAll(set1);
+                if (accurate_search) {
+                    accurate_search = false;
+                    break;
+                }
             }
             Iterator<Integer> it = set.iterator();
             int set_size = set.size();
@@ -445,7 +448,7 @@ public class GlobalVariables extends Application {
         return result;
     }
 
-    private boolean clear_all(){
+    private boolean clear_all() {
         File file = new File(data_path + "config.db");
         return file.delete();
     }
