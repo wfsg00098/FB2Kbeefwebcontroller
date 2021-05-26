@@ -378,7 +378,7 @@ public class GlobalVariables extends Application {
                     args1[1] = sqliteEscape(search);
                     args1[2] = sqliteEscape(search);
                     args1[3] = sqliteEscape(search);
-                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title=? or artist=? or album=?)", args1);
+                    cursor = db.rawQuery("select id from list_s" + Server_id + " where list=? and (title=? collate nocase or artist=? collate nocase or album=? collate nocase)", args1);
                 }
 
                 if (cursor.moveToFirst()) {
