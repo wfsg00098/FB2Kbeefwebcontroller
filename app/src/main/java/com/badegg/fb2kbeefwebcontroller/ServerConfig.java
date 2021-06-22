@@ -133,16 +133,14 @@ public class ServerConfig extends AppCompatActivity {
             refresh_server_list(id);
         });
 
-        findViewById(R.id.button_server_del).setOnClickListener(v -> {
-            new AlertDialog.Builder(ServerConfig.this).setMessage(R.string.server_del_confirm)
-                    .setPositiveButton(R.string.btn_confirm, (dialog, which) -> {
-                        String so = spinner_server.getSelectedItem().toString();
-                        G.db_del_server(Integer.parseInt(so));
-                        ServerConfig.this.refresh_server_list(0);
-                    })
-                    .setNegativeButton(R.string.btn_cancel, (dialog, which) -> {})
-                    .show();
-        });
+        findViewById(R.id.button_server_del).setOnClickListener(v -> new AlertDialog.Builder(ServerConfig.this).setMessage(R.string.server_del_confirm)
+                .setPositiveButton(R.string.btn_confirm, (dialog, which) -> {
+                    String so = spinner_server.getSelectedItem().toString();
+                    G.db_del_server(Integer.parseInt(so));
+                    ServerConfig.this.refresh_server_list(0);
+                })
+                .setNegativeButton(R.string.btn_cancel, (dialog, which) -> {})
+                .show());
 
         findViewById(R.id.button_server_save).setOnClickListener(v -> {
             int id = Integer.parseInt(spinner_server.getSelectedItem().toString());
@@ -160,7 +158,7 @@ public class ServerConfig extends AppCompatActivity {
 
         findViewById(R.id.button_update_playlist).setOnClickListener(v -> {
 
-            Snackbar sb = Snackbar.make(findViewById(R.id.server_layout), getString(R.string.playlist_updating), Snackbar.LENGTH_INDEFINITE);
+            Snackbar sb = Snackbar.make(findViewById(R.id.server_layout), getString(R.string.playlist_updating), Snackbar.LENGTH_SHORT);
             sb.setAction(R.string.snackbar_got_it, v1 -> sb.dismiss());
             sb.show();
             if (updating) return;
@@ -168,7 +166,7 @@ public class ServerConfig extends AppCompatActivity {
             Thread thread = new Thread(() -> {
                 if (G.db_update_playlist()) {
                     runOnUiThread(() -> {
-                        @SuppressLint("CutPasteId") Snackbar sb1 = Snackbar.make(findViewById(R.id.server_layout), getString(R.string.playlist_updated), Snackbar.LENGTH_INDEFINITE);
+                        @SuppressLint("CutPasteId") Snackbar sb1 = Snackbar.make(findViewById(R.id.server_layout), getString(R.string.playlist_updated), Snackbar.LENGTH_SHORT);
                         sb1.setAction(R.string.snackbar_got_it, v1 -> sb1.dismiss());
                         sb1.show();
                         updating = false;
@@ -176,7 +174,7 @@ public class ServerConfig extends AppCompatActivity {
                     });
                 } else {
                     runOnUiThread(() -> {
-                        @SuppressLint("CutPasteId") Snackbar sb1 = Snackbar.make(findViewById(R.id.server_layout), getString(R.string.snackbar_invalid_connection), Snackbar.LENGTH_INDEFINITE);
+                        @SuppressLint("CutPasteId") Snackbar sb1 = Snackbar.make(findViewById(R.id.server_layout), getString(R.string.snackbar_invalid_connection), Snackbar.LENGTH_SHORT);
                         sb1.setAction(R.string.snackbar_got_it, v1 -> sb1.dismiss());
                         sb1.show();
                         updating = false;

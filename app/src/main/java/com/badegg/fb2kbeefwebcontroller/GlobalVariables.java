@@ -204,6 +204,7 @@ public class GlobalVariables extends Application {
                 JSONObject json2 = new JSONObject(result);
                 json2 = json2.getJSONObject("playlistItems");
                 JSONArray array2 = json2.getJSONArray("items");
+                db.execSQL("begin");
                 for (int j = 0; j < itemcount; j++) {
                     JSONObject column = array2.getJSONObject(j);
                     JSONArray columns = column.getJSONArray("columns");
@@ -217,6 +218,7 @@ public class GlobalVariables extends Application {
                             columns.getString(3)
                     );
                 }
+                db.execSQL("commit");
             }
             return true;
         } catch (Exception e) {
@@ -433,7 +435,7 @@ public class GlobalVariables extends Application {
     }
 
     public void db_set_list_limit(int limit) {
-        db.execSQL("update current set listlimit=" + limit + "");
+        db.execSQL("update current set listlimit=" + limit);
     }
 
     public int db_get_list_limit() {
